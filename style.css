@@ -74,7 +74,7 @@ nav ul {
   transform: translateX(-50%);
 
   display: flex;
-  gap: 1.8em;
+  gap: 1em;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -84,7 +84,7 @@ nav ul {
 nav a {
   color: #111;
   text-decoration: none;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.3px;
   transition: 0.2s ease;
@@ -107,7 +107,7 @@ nav a:hover {
 
 /* SIIT ALGAB MOBIILI VAADE */
 
-@media (max-width: 700px) {
+@media (max-width: 1050px) {
   nav {
     padding: 0.9em 1em;
   }
