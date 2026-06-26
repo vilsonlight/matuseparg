@@ -403,16 +403,18 @@ section {
   padding: 0.75em 1.25em;
 
   color: black;
-  background-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.9);
 
   text-decoration: none;
   font-weight: 700;
   border-radius: 0.5em;
 
-  backdrop-filter: blur(6px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
-  transition: all 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .cta-button:hover {
