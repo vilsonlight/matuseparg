@@ -119,9 +119,17 @@
         />
       </a>
 
-      <button class="menu-toggle" type="button" aria-label="Menüü">☰</button>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Ava menüü"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        ☰
+      </button>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="nav-menu">
         <li>
           <a href="/matuseparg-kuuseokstega/">Matusepärjad kuuseokstega</a>
         </li>
@@ -1036,6 +1044,7 @@
 
         <label for="model">4. Valitud mudel</label>
         <select id="model" name="mudel">
+          <option value="">Vali mudel</option>
           <option value="Bach">Bach</option>
           <option value="Beethoven">Beethoven</option>
           <option value="Vivaldi">Vivaldi</option>
@@ -1104,8 +1113,17 @@
         <label for="date">8. Tarne kuupäev</label>
         <input type="date" id="date" name="tarne_kuupaev" required />
 
-        <label for="time">9. Tarne kellaaeg</label>
-        <input type="time" id="time" name="uleandmise_aeg" required />
+        <label for="time">9. Tarne ajavahemik</label>
+        <select id="time" name="uleandmise_aeg" required>
+          <option value="">Vali tarne ajavahemik</option>
+          <option value="09.00–11.00">09.00–11.00</option>
+          <option value="11.00–13.00">11.00–13.00</option>
+          <option value="13.00–15.00">13.00–15.00</option>
+          <option value="15.00–17.00">15.00–17.00</option>
+          <option value="17.00–19.00">17.00–19.00</option>
+          <option value="19.00–21.00">19.00–21.00</option>
+        </select>
+        <p class="form-note">Vajadusel täpsustame tarne kellaaega hiljem.</p>
 
         <label>10. Tasumise viis</label>
 
@@ -1136,7 +1154,12 @@
 
         <button type="submit">Saada tellimus</button>
 
-        <p id="formMessage" class="success-message">
+        <p
+          id="formMessage"
+          class="success-message"
+          role="status"
+          aria-live="polite"
+        >
           ✔ Oleme teie tellimuse kätte saanud. Tööpäeviti võtame teiega ühendust
           1,5 tunni jooksul. Pärast tööpäeva esitatud tellimustele vastame
           järgmisel tööpäeval.
@@ -1169,7 +1192,7 @@
           </p>
 
           <p>
-            Toimetame kuuseokstega matusepärgi ka Keilasse Vaata
+            Toimetame kuuseokstega matusepärgi ka Keilasse. Vaata
             <a href="/matuseparjad-keilas/"
               >matusepärgade kohaletoimetamisega Keilas</a
             >.
@@ -1289,6 +1312,7 @@
               href="https://www.facebook.com/floristjakobson"
               target="_blank"
               aria-label="Facebook"
+              rel="noopener noreferrer"
             >
               <svg viewBox="0 0 24 24">
                 <path
@@ -1301,6 +1325,7 @@
               href="https://www.youtube.com/@floristjakobson"
               target="_blank"
               aria-label="YouTube"
+              rel="noopener noreferrer"
             >
               <svg viewBox="0 0 24 24">
                 <path
@@ -1393,9 +1418,22 @@
         const navMenu = document.querySelector(".nav-menu");
 
         menuToggle.addEventListener("click", function () {
-          navMenu.classList.toggle("active");
+          const isOpen = navMenu.classList.toggle("active");
+
+          menuToggle.setAttribute("aria-expanded", isOpen);
+          menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Sulge menüü" : "Ava menüü",
+          );
         });
       });
+    </script>
+
+    <script>
+      const dateInput = document.getElementById("date");
+      const today = new Date().toISOString().split("T")[0];
+
+      dateInput.min = today;
     </script>
   </body>
 </html>
