@@ -199,59 +199,75 @@
       </div>
     </section>
 
+   <section class="reviews-section" aria-labelledby="reviews-title">
+ 
 
+  <div class="reviews-viewport">
+    <div class="reviews-container">
+      <article class="review-box">
+        <p class="review-text">
+          Pärg oli tõesti kaunis ja luksuslik! Väga kvaliteetselt kokku
+          pandud, igati tõeline meistriteos. Soovitan Teid kõigile!
+        </p>
+        <p class="review-author">– Kaisa Keizars-Aron</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
 
-    <section class="reviews-section">
-      <h2>Mida kliendid räägivad</h2>
+      <article class="review-box">
+        <p class="review-text">
+          Kõik oli väga meeldiv ja super tagasiside. Tänan teid väga! 🙂
+        </p>
+        <p class="review-author">– Viktoria Enger</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
 
-      <div class="reviews-container">
-        <div class="review-box">
-          <p class="review-text">
-            Pärg oli tõesti kaunis ja luksuslik! Väga kvaliteetselt kokku
-            pandud, igati tõeline meistriteos. Soovitan Teid kõigile!
-          </p>
-          <p class="review-author">– Kaisa Keizars-Aron</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
+      <article class="review-box">
+        <p class="review-text">
+          Väga ilus töö ja kiire kohaletoimetamine!
+        </p>
+        <p class="review-author">– Lea Tammejuur</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
 
-        <div class="review-box">
-          <p class="review-text">
-            Kõik oli väga meeldiv ja super tagasiside. Tänan teid väga! 🙂
-          </p>
-          <p class="review-author">–Viktoria Enger</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
+      <article class="review-box">
+        <p class="review-text">Väga kvaliteetsed matusepärjad.</p>
+        <p class="review-author">– Riho Surva</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
 
-        <div class="review-box">
-          <p class="review-text">Väga ilus töö ja kiire kohaletoimetamine!</p>
-          <p class="review-author">– Lea Tammejuur</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
+      <article class="review-box">
+        <p class="review-text">
+          Vastutulelik, väga asjalik ja kiire teenindus.
+        </p>
+        <p class="review-author">– Erika Jürgenson</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
 
-        <div class="review-box">
-          <p class="review-text">Väga kvaliteetsed matusepärjad.</p>
-          <p class="review-author">– Riho Surva</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
+      <article class="review-box">
+        <p class="review-text">
+          Mõlemad tellitud pärjad olid väga ilusad ja kvaliteetselt tehtud.
+          Suured tänud!
+        </p>
+        <p class="review-author">– Ruta Raidoja</p>
+        <p class="review-stars" aria-label="Hinnang 5 tärni viiest">
+          ★★★★★
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="review-box">
-          <p class="review-text">
-            Vastutulelik ja väga asjalik ja kiire teenindus.
-          </p>
-          <p class="review-author">– Erika Jürgenson.</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
-
-        <div class="review-box">
-          <p class="review-text">
-            Mõlemad tellitud pärjad olid väga ilusad ja kvaliteetselt tehtud.
-            Suured tänud!
-          </p>
-          <p class="review-author">– Ruta Raidoja.</p>
-          <p class="review-stars">★★★★★</p>
-        </div>
-      </div>
-    </section>
+    
 
 
 
@@ -882,5 +898,20 @@
         });
       });
     </script>
+
+  <script>
+  const reviewsTrack = document.querySelector(".reviews-container");
+
+  if (reviewsTrack) {
+    const originalReviews = Array.from(reviewsTrack.children);
+
+    originalReviews.forEach((review) => {
+      const copy = review.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      reviewsTrack.appendChild(copy);
+    });
+  }
+</script>
+
   </body>
 </html>
