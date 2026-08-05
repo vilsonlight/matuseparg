@@ -261,7 +261,7 @@ section {
   min-width: 250px;
   background: var(--box-color);
   padding: 20px;
-  
+
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -292,7 +292,7 @@ section {
 
 .toode-box {
   background: #ffffff;
-  
+
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -372,7 +372,7 @@ section {
 .product-box img {
   width: 100%;
   height: auto;
- 
+
   transition: transform 0.3s ease;
 }
 
@@ -409,7 +409,6 @@ section {
 
   text-decoration: none;
   font-weight: 700;
-  
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
@@ -455,7 +454,7 @@ section {
 .order-form textarea,
 .order-form select {
   padding: 10px;
-  
+
   border: 1px solid #ccc;
   font-size: 16px;
 }
@@ -516,7 +515,7 @@ section {
 .reviews-section {
   padding: 35px 0 45px;
   text-align: center;
-  background-color: white
+  background-color: white;
   overflow: hidden;
 }
 
@@ -544,9 +543,7 @@ section {
   box-sizing: border-box;
   padding: 25px 20px;
 
-  background: white
-  
- 
+  background: white;
 }
 
 .review-text {
@@ -655,7 +652,7 @@ section {
   aspect-ratio: 3 / 2;
   object-fit: cover;
   display: block;
- 
+
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.12);
 }
 
@@ -710,7 +707,6 @@ section {
 .mini-gallery-row img {
   width: 400px;
   max-width: 100%;
-  
 }
 
 /* FOOTER */
@@ -876,7 +872,6 @@ section {
 
   .info-details details {
     padding: 0 16px;
-    
   }
 
   .info-details summary {
@@ -900,7 +895,6 @@ section {
   padding: 35px 45px;
 
   background: #fff;
- 
 
   box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.04),
@@ -972,7 +966,6 @@ section {
   object-fit: cover;
   flex-shrink: 0;
 
- 
   display: block;
 
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.11);
