@@ -793,7 +793,18 @@
         <input type="date" id="date" name="tarne_kuupaev" required />
 
         <label for="time">8. Tarne kellaaeg</label>
-        <input type="time" id="time" name="tarne_aeg" required />
+        <select id="time" name="uleandmise_aeg" required>
+          <option value="">Vali ajavahemik</option>
+          <option value="09.00–11.00">09.00–11.00</option>
+          <option value="11.00–13.00">11.00–13.00</option>
+          <option value="13.00–15.00">13.00–15.00</option>
+          <option value="15.00–17.00">15.00–17.00</option>
+          <option value="17.00–19.00">17.00–19.00</option>
+        </select>
+
+        <p class="time-note">
+          Täpsem kellaaeg lepitakse kokku pärast tellimuse kinnitamist.
+        </p>
 
         <label>9. Tasumise viis</label>
 
@@ -931,32 +942,6 @@
           </p>
         </div>
       </details>
-    </section>
-
-    <section class="mini-gallery">
-      <h3>Viimased tööd</h3>
-      <p>
-        Töö käib meil igapäevaselt ning kõiki valminud leinakimpe ei jõua
-        pildistada. Siia oleme toonud väikese valiku näiteid meie tehtud
-        leinatöödest.
-      </p>
-
-      <div class="mini-gallery-row">
-        <img
-          src="/images/Leinakimbud-Tallinnas-galerii1.webp"
-          alt="Leinakimp Tallinnasse ja Harjumaale"
-          width="830"
-          height="554"
-          loading="lazy"
-        />
-        <img
-          src="/images/Leinakimbud-Tallinnas-galerii2.webp"
-          alt="Väärikas leinakimp matustele Tallinnas"
-          width="830"
-          height="554"
-          loading="lazy"
-        />
-      </div>
     </section>
 
     <footer>
