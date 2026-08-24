@@ -353,6 +353,12 @@ section {
   margin: auto;
 }
 
+#products-title {
+  margin: 0 0 35px;
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
 .product-grid-leinakimp {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
