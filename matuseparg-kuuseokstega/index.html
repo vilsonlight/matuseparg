@@ -617,10 +617,10 @@
 
         <div class="product-box">
           <img
-            src="/images/Matuseparjad-Tallinnas-Acamar.webp"
+            src="/images/Acamar.webp"
             alt="Matusepärg kalladest ja liiliatest"
-            width="480"
-            height="720"
+            width="800"
+            height="1200"
             loading="lazy"
             decoding="async"
           />
@@ -1118,7 +1118,7 @@
         <input type="email" id="email" name="email" required />
 
         <label for="model">4. Valitud mudel</label>
-        <select id="model" name="mudel">
+        <select id="model" name="mudel" required>
           <option value="">Vali mudel</option>
           <option value="Bach">Bach</option>
           <option value="Beethoven">Beethoven</option>
@@ -1184,9 +1184,12 @@
           id="address"
           name="tarne_aadress"
           rows="3"
-          placeholder="Näiteks: Rahumäe tee 12, Tallinn"
+          placeholder="Alusta aadressi kirjutamist"
+          autocomplete="off"
           required
         ></textarea>
+
+        <ul id="aadressiValikud"></ul>
 
         <label for="date">8. Tarne kuupäev</label>
         <input type="date" id="date" name="tarne_kuupaev" required />
@@ -1229,6 +1232,16 @@
 
         <label for="notes">11. Märkused</label>
         <textarea id="notes" name="markused" rows="3"></textarea>
+
+        <div class="order-summary" id="orderSummary" aria-live="polite">
+          <h3>Tellimuse kokkuvõte</h3>
+          <p id="parjaHind"></p>
+          <p id="lindiHind">Lint tekstiga: 0 €</p>
+          <p>Kuller: 10 €</p>
+          <p><strong id="hindKokku"></strong></p>
+        </div>
+
+        <input type="hidden" id="hinnaKokkuvote" name="hinna_kokkuvote" />
 
         <button type="submit">Saada tellimus</button>
 
@@ -1438,6 +1451,7 @@
       function selectProduct(productName) {
         const modelSelect = document.getElementById("model");
         modelSelect.value = productName;
+        modelSelect.dispatchEvent(new Event("change", { bubbles: true }));
 
         document.getElementById("orderForm").scrollIntoView({
           behavior: "smooth",
@@ -1454,6 +1468,7 @@
 
         message.style.display = "none";
 
+        uuendaTellimuseKokkuvotet();
         const formData = new FormData(form);
 
         try {
@@ -1512,6 +1527,251 @@
       const today = new Date().toISOString().split("T")[0];
 
       dateInput.min = today;
+    </script>
+    <script>
+      const aadressInput = document.getElementById("address");
+
+      const aadressiValikud = document.getElementById("aadressiValikud");
+
+      aadressInput.addEventListener("input", async function () {
+        const otsing = aadressInput.value.trim();
+
+        if (otsing.length < 3) {
+          aadressiValikud.innerHTML = "";
+          return;
+        }
+
+        const apiAadress =
+          "https://inaadress.maaamet.ee/inaadress/gazetteer" +
+          "?address=" +
+          encodeURIComponent(otsing) +
+          "&results=5&appartment=1";
+
+        const vastus = await fetch(apiAadress);
+        const andmed = await vastus.json();
+
+        aadressiValikud.innerHTML = "";
+
+        andmed.addresses.forEach(function (aadress) {
+          const valik = document.createElement("li");
+
+          valik.textContent = aadress.ipikkaadress;
+
+          valik.addEventListener("click", function () {
+            aadressInput.value = aadress.ipikkaadress;
+            aadressiValikud.innerHTML = "";
+          });
+
+          aadressiValikud.appendChild(valik);
+        });
+      });
+    </script>
+
+    <script>
+      const mudel = document.getElementById("model");
+      const suurus = document.getElementById("size");
+      const lindiTekst = document.getElementById("text");
+      const parjaHind = document.getElementById("parjaHind");
+      const hindKokku = document.getElementById("hindKokku");
+      const hinnaKokkuvote = document.getElementById("hinnaKokkuvote");
+      const mudeliteHinnad = {
+  "Bach": {
+    "∅60cm": 210,
+    "∅80cm": 250
+  },
+  "Beethoven": {
+    "∅60cm": 210,
+    "∅80cm": 250
+  },
+  "Vivaldi": {
+    "∅60cm": 185,
+    "∅80cm": 225
+  },
+  "Mozart": {
+    "∅60cm": 210,
+    "∅80cm": 250
+  },
+  "Alnitak": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Capella": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Castor": {
+    "∅60cm": 165,
+    "∅80cm": 210
+  },
+  "Felis": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Agena": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Pleione": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Denebola": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Caph": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Razalgethi": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Alphard": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Canopus": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Pollux": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Merga": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Acamar": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Tarazed": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Markab": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Kocab": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Strauss": {
+    "∅60cm": 185,
+    "∅80cm": 225
+  },
+  "Enif": {
+    "∅60cm": 165,
+    "∅80cm": 205
+  },
+  "Merak": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Alcor": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Alnair": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Sargas": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Rigel": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Vernalis": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Menkar": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Bellatrix": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Mintaka": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Ankaa": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Regulus": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Alshain": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Thuban": {
+    "∅60cm": 125,
+    "∅80cm": 165
+  },
+  "Procyon": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Mimosa": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Sirius": {
+    "∅60cm": 135,
+    "∅80cm": 175
+  },
+  "Celestia": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  },
+  "Elera": {
+    "∅60cm": 145,
+    "∅80cm": 185
+  }
+};
+
+      function uuendaTellimuseKokkuvotet() {
+        const valitudMudel = mudel.value;
+        const valitudSuurus = suurus.value;
+        const hind = mudeliteHinnad[valitudMudel]?.[valitudSuurus];
+        const lindiHind = lindiTekst.value.trim() ? 5 : 0;
+        const kulleriHind = 10;
+        document.getElementById("lindiHind").textContent =
+          "Lint tekstiga: " + lindiHind + " €";
+
+        if (!Number.isFinite(hind)) {
+          parjaHind.textContent = "Hinna nägemiseks vali mudel ja suurus.";
+          hindKokku.textContent = "";
+          hinnaKokkuvote.value = "";
+          return;
+        }
+
+        const kokku = hind + lindiHind + kulleriHind;
+        parjaHind.textContent = valitudMudel + " (" + valitudSuurus + "): " + hind + " €";
+        hindKokku.textContent = "Hind kokku: " + kokku + " €";
+        hinnaKokkuvote.value = parjaHind.textContent +
+          "; lint tekstiga: " + lindiHind + " €; kuller: " + kulleriHind +
+          " €; hind kokku: " + kokku + " €";
+      }
+
+      mudel.addEventListener("change", uuendaTellimuseKokkuvotet);
+      suurus.addEventListener("change", uuendaTellimuseKokkuvotet);
+      lindiTekst.addEventListener("input", uuendaTellimuseKokkuvotet);
+      document.querySelector("#orderForm form").addEventListener("reset", function () {
+        setTimeout(uuendaTellimuseKokkuvotet, 0);
+      });
+      uuendaTellimuseKokkuvotet();
     </script>
   </body>
 </html>
