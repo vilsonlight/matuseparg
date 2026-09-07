@@ -1243,6 +1243,12 @@
 
         <input type="hidden" id="hinnaKokkuvote" name="hinna_kokkuvote" />
 
+        <textarea
+          id="kinnituskirjaMustand"
+          name="kinnituskirja_mustand"
+          hidden
+        ></textarea>
+
         <button type="submit">Saada tellimus</button>
 
         <p
@@ -1528,6 +1534,7 @@
 
       dateInput.min = today;
     </script>
+
     <script>
       const aadressInput = document.getElementById("address");
 
@@ -1574,172 +1581,198 @@
       const parjaHind = document.getElementById("parjaHind");
       const hindKokku = document.getElementById("hindKokku");
       const hinnaKokkuvote = document.getElementById("hinnaKokkuvote");
+      const kinnituskirjaMustand = document.getElementById(
+        "kinnituskirjaMustand",
+      );
+
+      function vormindaKuupaev(kuupaev) {
+        if (!kuupaev) return "";
+
+        const kuud = [
+          "jaanuariks",
+          "veebruariks",
+          "märtsiks",
+          "aprilliks",
+          "maiks",
+          "juuniks",
+          "juuliks",
+          "augustiks",
+          "septembriks",
+          "oktoobriks",
+          "novembriks",
+          "detsembriks",
+        ];
+
+        const [aasta, kuu, paev] = kuupaev.split("-").map(Number);
+        return paev + ". " + kuud[kuu - 1];
+      }
+
       const mudeliteHinnad = {
-  "Bach": {
-    "∅60cm": 210,
-    "∅80cm": 250
-  },
-  "Beethoven": {
-    "∅60cm": 210,
-    "∅80cm": 250
-  },
-  "Vivaldi": {
-    "∅60cm": 185,
-    "∅80cm": 225
-  },
-  "Mozart": {
-    "∅60cm": 210,
-    "∅80cm": 250
-  },
-  "Alnitak": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Capella": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Castor": {
-    "∅60cm": 165,
-    "∅80cm": 210
-  },
-  "Felis": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Agena": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Pleione": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Denebola": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Caph": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Razalgethi": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Alphard": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Canopus": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Pollux": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Merga": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Acamar": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Tarazed": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Markab": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Kocab": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Strauss": {
-    "∅60cm": 185,
-    "∅80cm": 225
-  },
-  "Enif": {
-    "∅60cm": 165,
-    "∅80cm": 205
-  },
-  "Merak": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Alcor": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Alnair": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Sargas": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Rigel": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Vernalis": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Menkar": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Bellatrix": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Mintaka": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Ankaa": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Regulus": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Alshain": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Thuban": {
-    "∅60cm": 125,
-    "∅80cm": 165
-  },
-  "Procyon": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Mimosa": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Sirius": {
-    "∅60cm": 135,
-    "∅80cm": 175
-  },
-  "Celestia": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  },
-  "Elera": {
-    "∅60cm": 145,
-    "∅80cm": 185
-  }
-};
+        Bach: {
+          "∅60cm": 210,
+          "∅80cm": 250,
+        },
+        Beethoven: {
+          "∅60cm": 210,
+          "∅80cm": 250,
+        },
+        Vivaldi: {
+          "∅60cm": 185,
+          "∅80cm": 225,
+        },
+        Mozart: {
+          "∅60cm": 210,
+          "∅80cm": 250,
+        },
+        Alnitak: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Capella: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Castor: {
+          "∅60cm": 165,
+          "∅80cm": 210,
+        },
+        Felis: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Agena: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Pleione: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Denebola: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Caph: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Razalgethi: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Alphard: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Canopus: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Pollux: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Merga: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Acamar: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Tarazed: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Markab: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Kocab: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Strauss: {
+          "∅60cm": 185,
+          "∅80cm": 225,
+        },
+        Enif: {
+          "∅60cm": 165,
+          "∅80cm": 205,
+        },
+        Merak: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Alcor: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Alnair: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Sargas: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Rigel: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Vernalis: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Menkar: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Bellatrix: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Mintaka: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Ankaa: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Regulus: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Alshain: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Thuban: {
+          "∅60cm": 125,
+          "∅80cm": 165,
+        },
+        Procyon: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Mimosa: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Sirius: {
+          "∅60cm": 135,
+          "∅80cm": 175,
+        },
+        Celestia: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+        Elera: {
+          "∅60cm": 145,
+          "∅80cm": 185,
+        },
+      };
 
       function uuendaTellimuseKokkuvotet() {
         const valitudMudel = mudel.value;
@@ -1754,23 +1787,65 @@
           parjaHind.textContent = "Hinna nägemiseks vali mudel ja suurus.";
           hindKokku.textContent = "";
           hinnaKokkuvote.value = "";
+          kinnituskirjaMustand.value = "";
           return;
         }
 
         const kokku = hind + lindiHind + kulleriHind;
-        parjaHind.textContent = valitudMudel + " (" + valitudSuurus + "): " + hind + " €";
+        parjaHind.textContent =
+          valitudMudel + " (" + valitudSuurus + "): " + hind + " €";
         hindKokku.textContent = "Hind kokku: " + kokku + " €";
-        hinnaKokkuvote.value = parjaHind.textContent +
-          "; lint tekstiga: " + lindiHind + " €; kuller: " + kulleriHind +
-          " €; hind kokku: " + kokku + " €";
+        hinnaKokkuvote.value =
+          parjaHind.textContent +
+          "; lint tekstiga: " +
+          lindiHind +
+          " €; kuller: " +
+          kulleriHind +
+          " €; hind kokku: " +
+          kokku +
+          " €";
+
+        const tellijaNimi = document.getElementById("name").value.trim();
+        const tarneKuupaev = document.getElementById("date").value;
+        const tarneAadress = document.getElementById("address").value.trim();
+        const tarneAeg = document.getElementById("time").value;
+        const valitudTasumine = document.querySelector(
+          'input[name="tasumine"]:checked',
+        );
+        const tasumiseViis = valitudTasumine ? valitudTasumine.value : "";
+        const lindiRida = lindiTekst.value.trim()
+          ? "Lint tekstiga „" + lindiTekst.value.trim() + "” – 5 €\n"
+          : "";
+
+        kinnituskirjaMustand.value = `Tere, ${tellijaNimi}!
+
+Palun kinnitage tellimus ${vormindaKuupaev(tarneKuupaev)}.
+
+Tellimus:
+${valitudMudel} ${valitudSuurus} – ${hind} €
+${lindiRida}Kuller – ${kulleriHind} €
+
+Hind kokku: ${kokku} €
+
+Tarneaadress: ${tarneAadress}
+Tarne ajavahemik: ${tarneAeg}
+Tasumise viis: ${tasumiseViis}
+
+Arve on lisatud manusena.
+
+Lugupidamisega
+Ville Jakobson`;
       }
 
       mudel.addEventListener("change", uuendaTellimuseKokkuvotet);
       suurus.addEventListener("change", uuendaTellimuseKokkuvotet);
       lindiTekst.addEventListener("input", uuendaTellimuseKokkuvotet);
-      document.querySelector("#orderForm form").addEventListener("reset", function () {
-        setTimeout(uuendaTellimuseKokkuvotet, 0);
-      });
+      document
+        .querySelector("#orderForm form")
+        .addEventListener("reset", function () {
+          setTimeout(uuendaTellimuseKokkuvotet, 0);
+        });
+
       uuendaTellimuseKokkuvotet();
     </script>
   </body>
