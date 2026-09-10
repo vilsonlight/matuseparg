@@ -1082,6 +1082,13 @@
         </div>
 
         <input type="hidden" id="hinnaKokkuvote" name="hinna_kokkuvote" />
+
+        <textarea
+          id="kinnituskirjaMustand"
+          name="kinnituskirja_mustand"
+          hidden
+        ></textarea>
+
         <button type="submit">Saada tellimus</button>
 
         <p id="formMessage" class="success-message">
@@ -1299,6 +1306,7 @@
         message.style.display = "none";
 
         if (form.dataset.sending === "true") return;
+        uuendaTellimuseKokkuvotet();
         const formData = new FormData(form);
         form.dataset.sending = "true";
         const submitButton = form.querySelector("button[type=submit]");
@@ -1359,6 +1367,31 @@
       const parjaHind = document.getElementById("parjaHind");
       const hindKokku = document.getElementById("hindKokku");
       const hinnaKokkuvote = document.getElementById("hinnaKokkuvote");
+      const kinnituskirjaMustand = document.getElementById(
+        "kinnituskirjaMustand",
+      );
+
+      function vormindaKuupaev(kuupaev) {
+        if (!kuupaev) return "";
+
+        const kuud = [
+          "jaanuariks",
+          "veebruariks",
+          "märtsiks",
+          "aprilliks",
+          "maiks",
+          "juuniks",
+          "juuliks",
+          "augustiks",
+          "septembriks",
+          "oktoobriks",
+          "novembriks",
+          "detsembriks",
+        ];
+
+        const [aasta, kuu, paev] = kuupaev.split("-");
+        return Number(paev) + ". " + kuud[Number(kuu) - 1];
+      }
 
       const mudeliteHinnad = {
   "Chopin": {
@@ -1512,6 +1545,7 @@
           parjaHind.textContent = "Hinna nägemiseks vali mudel ja suurus.";
           hindKokku.textContent = "";
           hinnaKokkuvote.value = "";
+          kinnituskirjaMustand.value = "";
           return;
         }
 
@@ -1524,6 +1558,34 @@
           "; lint tekstiga: " + lindiHind +
           " €; kuller: " + kulleriHind +
           " €; hind kokku: " + kokku + " €";
+
+        const tellijaNimi = document.getElementById("name").value.trim();
+        const tarneKuupaev = document.getElementById("date").value;
+        const tarneAadress = document.getElementById("address").value.trim();
+        const tarneAeg = document.getElementById("time").value;
+        const valitudTasumine = document.querySelector(
+          'input[name="tasumine"]:checked',
+        );
+        const tasumiseViis = valitudTasumine ? valitudTasumine.value : "";
+        const lindiRida = lindiTekst.value.trim()
+          ? "Lint tekstiga „" + lindiTekst.value.trim() + "” – 5 €\n"
+          : "";
+
+        kinnituskirjaMustand.value = `Tere, ${tellijaNimi}!
+
+Palun kinnitage tellimus ${vormindaKuupaev(tarneKuupaev)}.
+
+Tellimus:
+${valitudMudel} ${valitudSuurus} – ${hind} €
+${lindiRida}Kuller – ${kulleriHind} €
+
+Hind kokku: ${kokku} €
+
+Tarneaadress: ${tarneAadress}
+Tarne ajavahemik: ${tarneAeg}
+Tasumise viis: ${tasumiseViis}
+
+Arve on lisatud manusena.`;
       }
 
       mudel.addEventListener("change", uuendaTellimuseKokkuvotet);

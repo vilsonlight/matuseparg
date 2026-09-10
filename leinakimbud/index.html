@@ -833,9 +833,12 @@
             id="address"
             name="tarne_aadress"
             rows="3"
-            placeholder="Näiteks: Rahumäe tee 12, Tallinn"
+            placeholder="Alusta aadressi kirjutamist"
+            autocomplete="off"
             required
           ></textarea>
+
+          <ul id="aadressiValikud"></ul>
 
           <label for="date">7. Tarne kuupäev</label>
           <input type="date" id="date" name="tarne_kuupaev" required />
@@ -880,6 +883,20 @@
 
           <label for="notes">10. Märkused</label>
           <textarea id="notes" name="markused" rows="3"></textarea>
+
+          <div class="price-summary" id="hinnaKokkuvote" aria-live="polite">
+            <h3>Tellimuse kokkuvõte</h3>
+            <p>Leinakimp: <strong id="kimbuHind">0 €</strong></p>
+            <p>Leinalint: <strong id="lindiHind">0 €</strong></p>
+            <p>Kuller: <strong id="kulleriHind">10 €</strong></p>
+            <p>Hind kokku: <strong id="hindKokku">10 €</strong></p>
+          </div>
+
+          <input
+            type="hidden"
+            id="kinnituskirjaMustand"
+            name="kinnituskirja_mustand"
+          />
 
           <button type="submit">Saada tellimus</button>
 
@@ -1088,11 +1105,126 @@
       function selectProduct(productName) {
         const modelSelect = document.getElementById("model");
         modelSelect.value = productName;
+        modelSelect.dispatchEvent(new Event("change", { bubbles: true }));
 
         document.getElementById("orderForm").scrollIntoView({
           behavior: "smooth",
         });
       }
+    </script>
+
+    <script>
+      const mudel = document.getElementById("model");
+      const lindiTekst = document.getElementById("text");
+      const kimbuHind = document.getElementById("kimbuHind");
+      const lindiHind = document.getElementById("lindiHind");
+      const kulleriHind = document.getElementById("kulleriHind");
+      const hindKokku = document.getElementById("hindKokku");
+      const kinnituskirjaMustand = document.getElementById(
+        "kinnituskirjaMustand",
+      );
+
+      const toodeteHinnad = {
+        LE1: 95,
+        LE2: 95,
+        LE3: 95,
+        LE4: 115,
+        LE5: 95,
+        LE6: 115,
+        LE7: 115,
+        LE8: 115,
+        LE9: 115,
+        LE10: 95,
+        LE11: 115,
+        LE12: 95,
+        Baham: 115,
+        Bunda: 115,
+        Maia: 115,
+        Manica: 125,
+        Atik: 115,
+        Heze: 115,
+        Tarf: 115,
+        Thabit: 115,
+        Nucatai: 125,
+        Labrum: 115,
+        Kerb: 115,
+        Nanto: 125,
+        Marfak: 115,
+      };
+
+      function vormindaKuupaev(kuupaev) {
+        if (!kuupaev) return "";
+
+        const kuud = [
+          "jaanuariks",
+          "veebruariks",
+          "märtsiks",
+          "aprilliks",
+          "maiks",
+          "juuniks",
+          "juuliks",
+          "augustiks",
+          "septembriks",
+          "oktoobriks",
+          "novembriks",
+          "detsembriks",
+        ];
+        const [aasta, kuu, paev] = kuupaev.split("-").map(Number);
+        return `${paev}. ${kuud[kuu - 1]}`;
+      }
+
+      function arvutaTellimus() {
+        const tooteHind = toodeteHinnad[mudel.value] || 0;
+        const lintHind = lindiTekst.value.trim() ? 5 : 0;
+        const kuller = 10;
+        const summa = tooteHind + lintHind + kuller;
+
+        kimbuHind.textContent = `${tooteHind} €`;
+        lindiHind.textContent = `${lintHind} €`;
+        kulleriHind.textContent = `${kuller} €`;
+        hindKokku.textContent = `${summa} €`;
+
+        return { tooteHind, lintHind, kuller, summa };
+      }
+
+      function koostaKinnituskirjaMustand() {
+        const nimi = document.getElementById("name").value.trim();
+        const aadress = document.getElementById("address").value.trim();
+        const kuupaev = document.getElementById("date").value;
+        const tarneaeg = document.getElementById("time").value;
+        const tasumine =
+          document.querySelector('input[name="tasumine"]:checked')?.value || "";
+        const { tooteHind, lintHind, kuller, summa } = arvutaTellimus();
+
+        const tellimuseRead = [`Leinakimp ${mudel.value} – ${tooteHind} €`];
+
+        if (lintHind > 0) {
+          tellimuseRead.push(
+            `Lint tekstiga „${lindiTekst.value.trim()}” – ${lintHind} €`,
+          );
+        }
+
+        tellimuseRead.push(`Kuller – ${kuller} €`);
+
+        kinnituskirjaMustand.value = `Tere, ${nimi}!
+
+Palun kinnitage tellimus ${vormindaKuupaev(kuupaev)}.
+
+Tellimus:
+${tellimuseRead.join("\n")}
+
+Hind kokku: ${summa} €
+
+Tarneaadress: ${aadress}
+Tarne ajavahemik: ${tarneaeg}
+Tasumise viis: ${tasumine}
+
+Arve on lisatud manusena.`;
+      }
+
+      mudel.addEventListener("change", arvutaTellimus);
+      lindiTekst.addEventListener("input", arvutaTellimus);
+      arvutaTellimus();
     </script>
 
     <script>
@@ -1103,6 +1235,8 @@
         event.preventDefault();
 
         message.style.display = "none";
+
+        koostaKinnituskirjaMustand();
 
         const formData = new FormData(form);
 
@@ -1123,6 +1257,7 @@
             message.style.display = "block";
 
             form.reset();
+            arvutaTellimus();
 
             message.scrollIntoView({ behavior: "smooth" });
           } else {
@@ -1164,6 +1299,44 @@
 
         dateInput.min = localToday;
       }
+    </script>
+
+    <script>
+      const aadressInput = document.getElementById("address");
+      const aadressiValikud = document.getElementById("aadressiValikud");
+
+      aadressInput.addEventListener("input", async function () {
+        const otsing = aadressInput.value.trim();
+
+        if (otsing.length < 3) {
+          aadressiValikud.innerHTML = "";
+          return;
+        }
+
+        const apiAadress =
+          "https://inaadress.maaamet.ee/inaadress/gazetteer" +
+          "?address=" +
+          encodeURIComponent(otsing) +
+          "&results=5&appartment=1";
+
+        const vastus = await fetch(apiAadress);
+        const andmed = await vastus.json();
+
+        aadressiValikud.innerHTML = "";
+
+        andmed.addresses.forEach(function (aadress) {
+          const valik = document.createElement("li");
+
+          valik.textContent = aadress.ipikkaadress;
+
+          valik.addEventListener("click", function () {
+            aadressInput.value = aadress.ipikkaadress;
+            aadressiValikud.innerHTML = "";
+          });
+
+          aadressiValikud.appendChild(valik);
+        });
+      });
     </script>
   </body>
 </html>
