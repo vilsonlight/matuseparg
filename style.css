@@ -1059,3 +1059,20 @@ section {
     right: 10px;
   }
 }
+
+.footer-language {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.footer-language a {
+  color: inherit;
+  font-size: 0.85rem;
+  opacity: 0.65;
+  text-decoration: none;
+}
+
+.footer-language a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
