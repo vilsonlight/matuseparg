@@ -345,6 +345,30 @@ section {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
 }
 
+.price-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 auto 30px;
+}
+
+.price-filter-btn {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.price-filter-btn:hover,
+.price-filter-btn.active {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
