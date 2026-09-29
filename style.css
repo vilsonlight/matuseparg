@@ -459,6 +459,16 @@ section {
   .product-grid-leinakimp {
     grid-template-columns: 1fr;
   }
+
+  .price-filter {
+    gap: 8px;
+  }
+
+  .price-filter-btn {
+    flex: 1 1 45%;
+    min-width: 140px;
+    padding: 12px 10px;
+  }
 }
 
 /* TELLIMISVORM */
