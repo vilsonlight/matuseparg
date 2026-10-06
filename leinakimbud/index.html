@@ -262,6 +262,24 @@
       <section aria-labelledby="products-title">
         <h2 id="products-title" class="products-title">Leinakimbud</h2>
 
+        <div class="price-filter">
+          <button class="price-filter-btn active" data-min="0" data-max="9999">
+            Kõik
+          </button>
+
+          <button class="price-filter-btn" data-min="95" data-max="115">
+            95–115 €
+          </button>
+
+          <button class="price-filter-btn" data-min="125" data-max="125">
+            125 €
+          </button>
+
+          <button class="price-filter-btn" data-min="135" data-max="135">
+            135 €
+          </button>
+        </div>
+
         <div class="product-grid-leinakimp">
           <div class="product-box">
             <img
@@ -1350,6 +1368,42 @@ Arve on lisatud manusena.`;
           });
 
           aadressiValikud.appendChild(valik);
+        });
+      });
+    </script>
+
+    <script>
+      const filterButtons = document.querySelectorAll(".price-filter-btn");
+
+      const productBoxes = document.querySelectorAll(
+        ".product-grid-leinakimp .product-box",
+      );
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const minHind = Number(button.dataset.min);
+          const maxHind = Number(button.dataset.max);
+
+          filterButtons.forEach(function (btn) {
+            btn.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          productBoxes.forEach(function (product) {
+            const tekst = product.textContent;
+            const hinnaVaste = tekst.match(/Hind:.*?(\d+)\s*€/);
+
+            if (!hinnaVaste) return;
+
+            const hind = Number(hinnaVaste[1]);
+
+            if (hind >= minHind && hind <= maxHind) {
+              product.style.display = "";
+            } else {
+              product.style.display = "none";
+            }
+          });
         });
       });
     </script>

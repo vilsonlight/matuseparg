@@ -245,6 +245,24 @@
         </p>
       </div>
 
+      <div class="price-filter">
+  <button class="price-filter-btn active" data-min="0" data-max="9999">
+    Kõik
+  </button>
+
+  <button class="price-filter-btn" data-min="125" data-max="145">
+    125–145 €
+  </button>
+
+  <button class="price-filter-btn" data-min="155" data-max="175">
+    155–175 €
+  </button>
+
+  <button class="price-filter-btn" data-min="185" data-max="9999">
+    185 €+
+  </button>
+</div>
+
       <div class="product-grid-leinakimp">
   
 
@@ -1662,5 +1680,41 @@ Arve on lisatud manusena.`;
         }
       });
 </script>
+<script>
+      const filterButtons = document.querySelectorAll(".price-filter-btn");
+
+      const productBoxes = document.querySelectorAll(
+        ".product-grid-leinakimp .product-box",
+      );
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const minHind = Number(button.dataset.min);
+          const maxHind = Number(button.dataset.max);
+
+          filterButtons.forEach(function (btn) {
+            btn.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          productBoxes.forEach(function (product) {
+            const tekst = product.textContent;
+            const hinnaVaste = tekst.match(/Hind:.*?(\d+)\s*€/);
+
+            if (!hinnaVaste) return;
+
+            const hind = Number(hinnaVaste[1]);
+
+            if (hind >= minHind && hind <= maxHind) {
+              product.style.display = "";
+            } else {
+              product.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+    
   </body>
 </html>
