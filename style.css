@@ -1110,3 +1110,33 @@ section {
   opacity: 1;
   text-decoration: underline;
 }
+
+.process-image-section {
+  padding: 20px 20px 35px;
+}
+
+.process-image-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.process-image-section {
+  padding: 30px 20px 40px;
+}
+
+.process-image-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
