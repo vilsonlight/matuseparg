@@ -331,6 +331,12 @@ section {
   }
 }
 
+/* ENGLISH VERSION – 3 TOOTEKAARTI */
+
+.tooted-container-en {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 /* TOOTELEHED */
 
 .product-section-title {
@@ -1111,8 +1117,11 @@ section {
   text-decoration: underline;
 }
 
+/* ENGLISH VERSION – PILT */
+
 .process-image-section {
-  padding: 20px 20px 35px;
+  margin-bottom: 0;
+  padding: 20px 20px 0;
 }
 
 .process-image-container {
@@ -1126,17 +1135,25 @@ section {
   height: auto;
 }
 
-.process-image-section {
-  padding: 30px 20px 40px;
+/* ENGLISH VERSION – PILDI JA INTRO VAHE */
+
+.process-image-section + .intro-section {
+  margin-top: 0;
+  padding: 15px 20px 25px;
 }
 
-.process-image-container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+/* MOBIIL */
 
-.process-image-container img {
-  display: block;
-  width: 100%;
-  height: auto;
+@media (max-width: 600px) {
+  .process-image-section {
+    padding: 10px 10px 0;
+  }
+
+  .process-image-section + .intro-section {
+    padding: 10px 12px 20px;
+  }
+
+  .process-image-section + .intro-section .intro-container {
+    padding: 22px 18px;
+  }
 }

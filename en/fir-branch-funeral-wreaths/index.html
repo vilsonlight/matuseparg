@@ -1073,24 +1073,31 @@
         </div>
       </div>
     </section>
+
+    <!-- ENGLISH VERSION – FIR-BRANCH FUNERAL WREATHS ORDER FORM -->
+
     <section class="order-form" id="orderForm">
       <h2>Place your order</h2>
+
       <form action="https://formspree.io/f/xkopbzkl" method="POST">
         <label for="name">1. Your name</label>
-        <input id="name" name="nimi" required="" type="text" />
+        <input id="name" name="nimi" required type="text" />
+
         <label for="phone">2. Your phone number</label>
         <input
           id="phone"
           inputmode="tel"
           name="telefon"
-          placeholder="+372 5xxx xxxx"
-          required=""
+          placeholder="+44 7700 900123"
+          required
           type="tel"
         />
+
         <label for="email">3. Your email</label>
-        <input id="email" name="email" required="" type="email" />
+        <input id="email" name="email" required type="email" />
+
         <label for="model">4. Selected wreath</label>
-        <select id="model" name="mudel" required="">
+        <select id="model" name="mudel" required>
           <option value="">Choose a wreath</option>
           <option value="Bach">Bach</option>
           <option value="Beethoven">Beethoven</option>
@@ -1134,12 +1141,14 @@
           <option value="Celestia">Celestia</option>
           <option value="Elera">Elera</option>
         </select>
+
         <label for="size">5. Size</label>
-        <select id="size" name="suurus" required="">
+        <select id="size" name="suurus" required>
           <option value="">Choose a size</option>
           <option value="∅60cm">∅60 cm</option>
           <option value="∅80cm">∅80 cm</option>
         </select>
+
         <label for="text">6. Funeral ribbon message (5 €)</label>
         <textarea
           id="text"
@@ -1147,21 +1156,50 @@
           placeholder="Example: In loving memory of our dear grandfather"
           rows="3"
         ></textarea>
-        <label for="address">7. Delivery address</label>
+
+        <label for="address">7. Delivery location / address</label>
         <textarea
           autocomplete="off"
           id="address"
           name="tarne_aadress"
-          placeholder="Start typing the delivery address"
-          required=""
+          placeholder="Enter the cemetery, church, chapel or delivery address"
+          required
           rows="3"
         ></textarea>
         <ul id="aadressiValikud"></ul>
-        <label for="date">8. Delivery date</label>
-        <input id="date" name="tarne_kuupaev" required="" type="date" />
-        <label for="time">9. Delivery time window</label>
-        <select id="time" name="uleandmise_aeg" required="">
-          <option value="">Choose a delivery time window</option>
+
+        <p class="form-note">
+          Please provide the name of the cemetery, church, chapel or the
+          delivery address in Tallinn or Harju County.
+        </p>
+
+        <label for="localContact"> 8. Local contact person (optional) </label>
+        <input
+          id="localContact"
+          name="kohalik_kontaktisik"
+          type="text"
+          placeholder="Name of the funeral organiser or contact person"
+        />
+
+        <label for="localPhone"> Local contact phone (optional) </label>
+        <input
+          id="localPhone"
+          name="kohaliku_kontakti_telefon"
+          type="tel"
+          placeholder="+372 5xxx xxxx"
+        />
+
+        <p class="form-note">
+          If available, please provide the contact details of the funeral
+          organiser or another person attending the ceremony.
+        </p>
+
+        <label for="date">9. Delivery date</label>
+        <input id="date" name="tarne_kuupaev" required type="date" />
+
+        <label for="time">10. Delivery time</label>
+        <select id="time" name="uleandmise_aeg" required>
+          <option value="">Choose a time window</option>
           <option value="09.00–11.00">09.00–11.00</option>
           <option value="11.00–13.00">11.00–13.00</option>
           <option value="13.00–15.00">13.00–15.00</option>
@@ -1169,31 +1207,42 @@
           <option value="17.00–19.00">17.00–19.00</option>
           <option value="19.00–21.00">19.00–21.00</option>
         </select>
-        <p class="form-note">
-          If necessary, we will confirm the exact delivery time with you later.
+
+        <p class="time-note">
+          The exact delivery time will be confirmed after we review your order.
         </p>
-        <label>10. Payment method</label>
+
+        <label>11. Payment method</label>
         <div class="payment-options">
-          <label
-            ><input
+          <label>
+            <input
               name="tasumine"
-              required=""
+              required
+              checked
               type="radio"
               value="Ülekandega"
             />
-            Bank transfer</label
-          >
+            Bank transfer
+          </label>
+
           <p class="form-note">
-            After receiving your order, we will send the invoice and payment
-            details to your email
+            After receiving your order, we will email you an invoice with our
+            bank details (IBAN) and payment instructions. International bank
+            transfers are accepted.
           </p>
+
           <p>
-            <strong>Courier fee:</strong> Delivery in Tallinn and Harju County
-            is €10. Delivery is free when two or more products are ordered.
+            <strong>Courier fee:</strong>
+            Delivery in Tallinn and Harju County is €10. Delivery is free when
+            two or more products are ordered.
           </p>
         </div>
-        <label for="notes">11. Notes</label>
+
+        <label for="notes">12. Notes</label>
         <textarea id="notes" name="markused" rows="3"></textarea>
+
+        <!-- PRESERVE EXISTING PRICE SUMMARY IDS -->
+
         <div aria-live="polite" class="order-summary" id="orderSummary">
           <h3>Order summary</h3>
           <p id="parjaHind">Wreath:</p>
@@ -1201,13 +1250,17 @@
           <p>Courier: 10 €</p>
           <p><strong id="hindKokku"></strong></p>
         </div>
+
         <input id="hinnaKokkuvote" name="hinna_kokkuvote" type="hidden" />
+
         <textarea
-          hidden=""
+          hidden
           id="kinnituskirjaMustand"
           name="kinnituskirja_mustand"
         ></textarea>
+
         <button type="submit">Place order</button>
+
         <p
           aria-live="polite"
           class="success-message"
