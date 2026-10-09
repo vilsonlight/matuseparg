@@ -337,6 +337,14 @@ section {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* ENGLISH VERSION – MOBIIL */
+
+@media (max-width: 900px) {
+  .tooted-container-en {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* TOOTELEHED */
 
 .product-section-title {
