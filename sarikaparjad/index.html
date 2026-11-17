@@ -24,7 +24,7 @@
 
     <meta
       name="description"
-      content="Sarikapärjad läbimõõduga 80 cm. Hind 65 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal. Sobivad sarikapeoks eramule, kortermajale ja ehitusobjektile."
+      content="Sarikapärjad Tallinnas ja Harjumaal. Kaks suurust: 80 cm – 65 € ja 100 cm – 100 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal."
     />
 
     <link rel="canonical" href="https://matuseparg.ee/sarikaparjad/" />
@@ -47,7 +47,7 @@
 
     <meta
       property="og:description"
-      content="Sarikapärjad läbimõõduga 80 cm. Hind 65 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal."
+      content="Sarikapärjad kahes suuruses: 80 cm – 65 € ja 100 cm – 100 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal."
     />
 
     <meta property="og:type" content="website" />
@@ -78,7 +78,7 @@
         "url": "https://matuseparg.ee/",
         "logo": "https://matuseparg.ee/images/logo512.png",
         "image": "https://matuseparg.ee/images/Sarikaparg.webp",
-        "description": "Sarikapärjad läbimõõduga 80 cm. Hind 65 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal.",
+        "description": "Sarikapärjad kahes suuruses: 80 cm – 65 € ja 100 cm – 100 €. Tasuta kohaletoimetamine Tallinnas ja Harjumaal.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Suvila 6",
@@ -101,7 +101,7 @@
             "name": "Kui suured on sarikapärjad?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Florist Jakobsoni valmistatavad sarikapärjad on läbimõõduga 80 cm."
+              "text": "Florist Jakobsoni sarikapärjad on saadaval kahes suuruses: 80 cm ja 100 cm."
             }
           },
           {
@@ -109,7 +109,7 @@
             "name": "Kui palju sarikapärjad maksavad?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sarikapärjade hind on 65 €."
+              "text": "Standardmõõdus 80 cm sarikapärg maksab 65 € ja suurem 100 cm sarikapärg 100 €."
             }
           },
           {
@@ -254,15 +254,21 @@
       <div class="hello-row hello-reverse">
         <div class="hello-text">
           <h2>Hind ja tellimine</h2>
-
           <p>
-            <strong>Sarikapärjade läbimõõt: 80 cm</strong><br />
-            <strong>Hind: 65 €</strong>
+            <strong>Standard – Ø80 cm · 65 €</strong><br />
+            <strong>Suur – Ø100 cm · 100 €</strong>
           </p>
 
           <p>
-            Tallinnas ja Harjumaal on kohaletoimetamine tasuta. Tellimiseks
-            täitke allolev tellimisvorm. Vajadusel täpsustame detaile.
+            Standardmõõdus sarikapärg sobib hästi eramutele ja väiksematele
+            ehitusobjektidele. Suurem, 100 cm läbimõõduga sarikapärg on
+            esinduslik valik kõrgetele hoonetele ja suurematele
+            ehitusobjektidele, kus pärg paistab paremini silma ka kaugemalt.
+          </p>
+
+          <p>
+            Tallinnas ja Harjumaal on mõlema suurusega sarikapärja
+            kohaletoimetamine tasuta. Tellimiseks täitke allolev tellimisvorm.
           </p>
         </div>
 
@@ -288,14 +294,26 @@
         <label for="email">3. Tellija e-mail</label>
         <input type="email" id="email" name="email" required />
 
-        <label for="product">4. Toode</label>
-        <input
-          type="text"
-          id="product"
-          name="toode"
-          value="Sarikapärg Ø80 cm – 65 €"
-          readonly
-        />
+        <!-- SARIKAPÄRJA MÕÕDU VALIK -->
+        <label>4. Toode</label>
+
+        <div class="payment-options">
+          <label>
+            <input
+              type="radio"
+              name="toode"
+              value="Standard – Ø80 cm – 65 €"
+              required
+              checked
+            />
+            Standard – Ø80 cm – 65 €
+          </label>
+
+          <label>
+            <input type="radio" name="toode" value="Suur – Ø100 cm – 100 €" />
+            Suur – Ø100 cm – 100 €
+          </label>
+        </div>
 
         <label for="address">5. Tarneaadress</label>
         <textarea
@@ -363,15 +381,20 @@
         <summary>Sarikapärjade hind ja mõõt</summary>
 
         <div class="details-content">
+          <p>Sarikapärgi valmistame kahes suuruses:</p>
+
           <p>
-            Florist Jakobsoni valmistatavad sarikapärjad on läbimõõduga 80 cm.
+            <strong>Standard – Ø80 cm · 65 €</strong><br />
+            Klassikaline sarikapärg, mis sobib hästi eramutele, väiksematele
+            kortermajadele ja ehitusobjektidele.
           </p>
 
-          <p>Sarikapärjade hind on 65 €.</p>
-
           <p>
-            Pärg sobib hästi sarikapeoks eramule, kortermajale, ärihoonele või
-            suuremale ehitusobjektile.
+            <strong>Suur – Ø100 cm · 100 €</strong><br />
+            Suurem ja esinduslikum sarikapärg, mis sobib eriti hästi kõrgetele
+            hoonetele, suurematele kortermajadele ja ärihoonetele. Suurem
+            läbimõõt tagab parema nähtavuse ka kaugemalt ning mõjub suurel
+            ehitusobjektil proportsionaalsemalt.
           </p>
         </div>
       </details>
