@@ -289,7 +289,7 @@
           />
           <h3>Bach</h3>
           <p>роза • лилия</p>
-          <p>Цена: ∅60cm 210€, ∅80cm 250€</p>
+          <p>Цена: ∅60cm 320€, ∅80cm 360€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -308,7 +308,7 @@
           />
           <h3>Beethoven</h3>
           <p>роза • гортензия • хризантема</p>
-          <p>Цена: ∅60cm 210€, ∅80cm 250€</p>
+          <p>Цена: ∅60cm 330€, ∅80cm 370€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -327,7 +327,7 @@
           />
           <h3>Vivaldi</h3>
           <p>роза • лилия • хризантема</p>
-          <p>Цена: ∅60cm 185€, ∅80cm 225€</p>
+          <p>Цена: ∅60cm 310€, ∅80cm 350€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -346,7 +346,7 @@
           />
           <h3>Mozart</h3>
           <p>белая и красная роза • лилия</p>
-          <p>Цена: ∅60cm 210€, ∅80cm 250€</p>
+          <p>Цена: ∅60cm 330€, ∅80cm 370€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -688,7 +688,7 @@
           />
           <h3>Strauss</h3>
           <p>гортензия • роза</p>
-          <p>Цена: ∅60cm 185€, ∅80cm 225€</p>
+          <p>Цена: ∅60cm 310€, ∅80cm 350€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -707,7 +707,7 @@
           />
           <h3>Enif</h3>
           <p>хризантема • лилия • анемон • эустома</p>
-          <p>Цена: ∅60cm 165€, ∅80cm 205€</p>
+          <p>Цена: ∅60cm 310€, ∅80cm 350€</p>
           <a
             class="cta-button"
             href="#orderForm"
@@ -1488,276 +1488,276 @@
       });
     </script>
     <script>
-      const mudel = document.getElementById("model");
-      const suurus = document.getElementById("size");
-      const lindiTekst = document.getElementById("text");
-      const parjaHind = document.getElementById("parjaHind");
-      const hindKokku = document.getElementById("hindKokku");
-      const hinnaKokkuvote = document.getElementById("hinnaKokkuvote");
-      const kinnituskirjaMustand = document.getElementById(
-        "kinnituskirjaMustand",
-      );
+            const mudel = document.getElementById("model");
+            const suurus = document.getElementById("size");
+            const lindiTekst = document.getElementById("text");
+            const parjaHind = document.getElementById("parjaHind");
+            const hindKokku = document.getElementById("hindKokku");
+            const hinnaKokkuvote = document.getElementById("hinnaKokkuvote");
+            const kinnituskirjaMustand = document.getElementById(
+              "kinnituskirjaMustand",
+            );
 
-      function vormindaKuupaev(kuupaev) {
-        if (!kuupaev) return "";
+            function vormindaKuupaev(kuupaev) {
+              if (!kuupaev) return "";
 
-        const kuud = [
-          "января",
-          "февраля",
-          "марта",
-          "апреля",
-          "мая",
-          "июня",
-          "июля",
-          "августа",
-          "сентября",
-          "октября",
-          "ноября",
-          "декабря",
-        ];
+              const kuud = [
+                "января",
+                "февраля",
+                "марта",
+                "апреля",
+                "мая",
+                "июня",
+                "июля",
+                "августа",
+                "сентября",
+                "октября",
+                "ноября",
+                "декабря",
+              ];
 
-        const [aasta, kuu, paev] = kuupaev.split("-").map(Number);
-        return paev + ". " + kuud[kuu - 1];
-      }
+              const [aasta, kuu, paev] = kuupaev.split("-").map(Number);
+              return paev + ". " + kuud[kuu - 1];
+            }
 
-      const mudeliteHinnad = {
-        Bach: {
-          "∅60cm": 210,
-          "∅80cm": 250,
-        },
-        Beethoven: {
-          "∅60cm": 210,
-          "∅80cm": 250,
-        },
-        Vivaldi: {
-          "∅60cm": 185,
-          "∅80cm": 225,
-        },
-        Mozart: {
-          "∅60cm": 210,
-          "∅80cm": 250,
-        },
-        Alnitak: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Capella: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Castor: {
-          "∅60cm": 165,
-          "∅80cm": 210,
-        },
-        Felis: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Agena: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Pleione: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Denebola: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Caph: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Razalgethi: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Alphard: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Canopus: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Pollux: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Merga: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Acamar: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Tarazed: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Markab: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Kocab: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Strauss: {
-          "∅60cm": 185,
-          "∅80cm": 225,
-        },
-        Enif: {
-          "∅60cm": 165,
-          "∅80cm": 205,
-        },
-        Merak: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Alcor: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Alnair: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Sargas: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Rigel: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Vernalis: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Menkar: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Bellatrix: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Mintaka: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Ankaa: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Regulus: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Alshain: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Thuban: {
-          "∅60cm": 125,
-          "∅80cm": 165,
-        },
-        Procyon: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Mimosa: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Sirius: {
-          "∅60cm": 135,
-          "∅80cm": 175,
-        },
-        Celestia: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-        Elera: {
-          "∅60cm": 145,
-          "∅80cm": 185,
-        },
-      };
+            const mudeliteHinnad = {
+              Bach: {
+                "∅60cm": 320,
+                "∅80cm": 360,
+              },
+              Beethoven: {
+                "∅60cm": 330,
+                "∅80cm": 370,
+              },
+              Vivaldi: {
+                "∅60cm": 310,
+                "∅80cm": 350,
+              },
+              Mozart: {
+                "∅60cm": 330,
+                "∅80cm": 370,
+              },
+              Alnitak: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Capella: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Castor: {
+                "∅60cm": 165,
+                "∅80cm": 210,
+              },
+              Felis: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Agena: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Pleione: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Denebola: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Caph: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Razalgethi: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Alphard: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Canopus: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Pollux: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Merga: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Acamar: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Tarazed: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Markab: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Kocab: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Strauss: {
+                "∅60cm": 310,
+                "∅80cm": 350,
+              },
+              Enif: {
+                "∅60cm": 310,
+                "∅80cm": 350,
+              },A
+              Merak: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Alcor: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Alnair: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Sargas: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Rigel: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Vernalis: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Menkar: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Bellatrix: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Mintaka: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Ankaa: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Regulus: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Alshain: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Thuban: {
+                "∅60cm": 125,
+                "∅80cm": 165,
+              },
+              Procyon: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Mimosa: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Sirius: {
+                "∅60cm": 135,
+                "∅80cm": 175,
+              },
+              Celestia: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+              Elera: {
+                "∅60cm": 145,
+                "∅80cm": 185,
+              },
+            };
 
-      function uuendaTellimuseKokkuvotet() {
-        const valitudMudel = mudel.value;
-        const valitudSuurus = suurus.value;
-        const hind = mudeliteHinnad[valitudMudel]?.[valitudSuurus];
-        const lindiHind = lindiTekst.value.trim() ? 5 : 0;
-        const kulleriHind = 10;
-        document.getElementById("lindiHind").textContent =
-          "Лента с текстом: " + lindiHind + " €";
+            function uuendaTellimuseKokkuvotet() {
+              const valitudMudel = mudel.value;
+              const valitudSuurus = suurus.value;
+              const hind = mudeliteHinnad[valitudMudel]?.[valitudSuurus];
+              const lindiHind = lindiTekst.value.trim() ? 5 : 0;
+              const kulleriHind = 10;
+              document.getElementById("lindiHind").textContent =
+                "Лента с текстом: " + lindiHind + " €";
 
-        if (!Number.isFinite(hind)) {
-          parjaHind.textContent =
-            "Чтобы увидеть цену, выберите модель и размер.";
-          hindKokku.textContent = "";
-          hinnaKokkuvote.value = "";
-          kinnituskirjaMustand.value = "";
-          return;
-        }
+              if (!Number.isFinite(hind)) {
+                parjaHind.textContent =
+                  "Чтобы увидеть цену, выберите модель и размер.";
+                hindKokku.textContent = "";
+                hinnaKokkuvote.value = "";
+                kinnituskirjaMustand.value = "";
+                return;
+              }
 
-        const kokku = hind + lindiHind + kulleriHind;
-        parjaHind.textContent =
-          valitudMudel + " (" + valitudSuurus + "): " + hind + " €";
-        hindKokku.textContent = "Итого: " + kokku + " €";
-        hinnaKokkuvote.value =
-          parjaHind.textContent +
-          "; лента с текстом: " +
-          lindiHind +
-          " €; доставка: " +
-          kulleriHind +
-          " €; итого: " +
-          kokku +
-          " €";
+              const kokku = hind + lindiHind + kulleriHind;
+              parjaHind.textContent =
+                valitudMudel + " (" + valitudSuurus + "): " + hind + " €";
+              hindKokku.textContent = "Итого: " + kokku + " €";
+              hinnaKokkuvote.value =
+                parjaHind.textContent +
+                "; лента с текстом: " +
+                lindiHind +
+                " €; доставка: " +
+                kulleriHind +
+                " €; итого: " +
+                kokku +
+                " €";
 
-        const tellijaNimi = document.getElementById("name").value.trim();
-        const tarneKuupaev = document.getElementById("date").value;
-        const tarneAadress = document.getElementById("address").value.trim();
-        const tarneAeg = document.getElementById("time").value;
-        const valitudTasumine = document.querySelector(
-          'input[name="tasumine"]:checked',
-        );
-        const tasumiseViis = valitudTasumine ? valitudTasumine.value : "";
-        const lindiRida = lindiTekst.value.trim()
-          ? "Лента с текстом «" + lindiTekst.value.trim() + "» — 5 €\n"
-          : "";
+              const tellijaNimi = document.getElementById("name").value.trim();
+              const tarneKuupaev = document.getElementById("date").value;
+              const tarneAadress = document.getElementById("address").value.trim();
+              const tarneAeg = document.getElementById("time").value;
+              const valitudTasumine = document.querySelector(
+                'input[name="tasumine"]:checked',
+              );
+              const tasumiseViis = valitudTasumine ? valitudTasumine.value : "";
+              const lindiRida = lindiTekst.value.trim()
+                ? "Лента с текстом «" + lindiTekst.value.trim() + "» — 5 €\n"
+                : "";
 
-        kinnituskirjaMustand.value = `Здравствуйте, ${tellijaNimi}!
+              kinnituskirjaMustand.value = `Здравствуйте, ${tellijaNimi}!
 
-Пожалуйста, подтвердите заказ на ${vormindaKuupaev(tarneKuupaev)}.
+      Пожалуйста, подтвердите заказ на ${vormindaKuupaev(tarneKuupaev)}.
 
-Заказ:
-${valitudMudel} ${valitudSuurus} – ${hind} €
-${lindiRida}Доставка — ${kulleriHind} €
+      Заказ:
+      ${valitudMudel} ${valitudSuurus} – ${hind} €
+      ${lindiRida}Доставка — ${kulleriHind} €
 
-Итого: ${kokku} €
+      Итого: ${kokku} €
 
-Адрес доставки: ${tarneAadress}
-Интервал доставки: ${tarneAeg}
-Способ оплаты: ${tasumiseViis}
+      Адрес доставки: ${tarneAadress}
+      Интервал доставки: ${tarneAeg}
+      Способ оплаты: ${tasumiseViis}
 
-Счёт приложен к письму.`;
-      }
+      Счёт приложен к письму.`;
+            }
 
-      mudel.addEventListener("change", uuendaTellimuseKokkuvotet);
-      suurus.addEventListener("change", uuendaTellimuseKokkuvotet);
-      lindiTekst.addEventListener("input", uuendaTellimuseKokkuvotet);
-      document
-        .querySelector("#orderForm form")
-        .addEventListener("reset", function () {
-          setTimeout(uuendaTellimuseKokkuvotet, 0);
-        });
+            mudel.addEventListener("change", uuendaTellimuseKokkuvotet);
+            suurus.addEventListener("change", uuendaTellimuseKokkuvotet);
+            lindiTekst.addEventListener("input", uuendaTellimuseKokkuvotet);
+            document
+              .querySelector("#orderForm form")
+              .addEventListener("reset", function () {
+                setTimeout(uuendaTellimuseKokkuvotet, 0);
+              });
 
-      uuendaTellimuseKokkuvotet();
+            uuendaTellimuseKokkuvotet();
     </script>
   </body>
 </html>
