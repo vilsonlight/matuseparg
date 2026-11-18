@@ -279,9 +279,27 @@
       </div>
     </section>
 
-    <section>
+    <div class="price-filter">
+      <button class="price-filter-btn active" data-min="0" data-max="9999">
+        Kõik
+      </button>
+
+      <button class="price-filter-btn" data-min="125" data-max="135">
+        125–135 €
+      </button>
+
+      <button class="price-filter-btn" data-min="145" data-max="165">
+        145–165 €
+      </button>
+
+      <button class="price-filter-btn" data-min="310" data-max="370">
+        Premium 310–370 €
+      </button>
+    </div>
+
+    <section id="tavalised-parjad">
       <div class="product-section-title">
-        <h2>Kuuseokstega matusepärjade valik</h2>
+        <h2>Matusepärjad kuuseokstega</h2>
         <p>
           Kuuseokstega matusepärg on ajatu ja väärikas valik viimseks
           austusavalduseks. Pärg valmistatakse kuuseokstest metallrõngale ning
@@ -290,105 +308,7 @@
         </p>
       </div>
 
-      <div class="price-filter">
-        <button class="price-filter-btn active" data-min="0" data-max="9999">
-          Kõik
-        </button>
-
-        <button class="price-filter-btn" data-min="125" data-max="135">
-          125–135 €
-        </button>
-
-        <button class="price-filter-btn" data-min="145" data-max="165">
-          145–165 €
-        </button>
-
-        <button class="price-filter-btn" data-min="185" data-max="210">
-          185–210 €
-        </button>
-      </div>
-
       <div class="product-grid">
-        <div class="product-box">
-          <img
-            src="/images/Matuseparg13.webp"
-            alt="Luksuslik matusepärg roosidest ja liiliatest"
-            width="800"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Bach</h3>
-          <p>roos • liilia</p>
-          <p>Hind: ∅60cm 210€, ∅80cm 250€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Bach')"
-            >Telli</a
-          >
-        </div>
-
-        <div class="product-box">
-          <img
-            src="/images/Matuseparjad-kulleriga-Beethoven.webp"
-            alt="Premiumpärg hortensiatest Tallinnasse"
-            width="800"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Beethoven</h3>
-          <p>roos • hortensia • krüsanteem</p>
-          <p>Hind: ∅60cm 210€, ∅80cm 250€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Beethoven')"
-            >Telli</a
-          >
-        </div>
-
-        <div class="product-box">
-          <img
-            src="/images/Matuseparjad-kulleriga-Vivaldi.webp"
-            alt="Matusepärg kuldsete roosidega"
-            width="800"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Vivaldi</h3>
-          <p>roos • liilia • krüsanteem</p>
-          <p>Hind: ∅60cm 185€, ∅80cm 225€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Vivaldi')"
-            >Telli</a
-          >
-        </div>
-
-        <div class="product-box">
-          <img
-            src="/images/Matuseparjad-kulleriga-Tallinnas.webp"
-            alt="Matusepärg roosidest ja liiliatest"
-            width="800"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Mozart</h3>
-          <p>valge ja punane roos • liilia</p>
-          <p>Hind: ∅60cm 210€, ∅80cm 250€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Mozart')"
-            >Telli</a
-          >
-        </div>
-
         <div class="product-box">
           <img
             src="/images/Matuseparjad-kulleriga-Alnitek.webp"
@@ -725,46 +645,6 @@
             href="#orderForm"
             class="cta-button"
             onclick="selectProduct('Kocab')"
-            >Telli</a
-          >
-        </div>
-
-        <div class="product-box">
-          <img
-            src="/images/strauss.webp"
-            alt="Matusepärg hortensiatest"
-            width="800"
-            height="1200"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Strauss</h3>
-          <p>hortensia • roos</p>
-          <p>Hind: ∅60cm 185€, ∅80cm 225€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Strauss')"
-            >Telli</a
-          >
-        </div>
-
-        <div class="product-box">
-          <img
-            src="/images/Matuseparg-Tallinnas-Enif.webp"
-            alt="Värviline matusepärg"
-            width="480"
-            height="720"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3>Enif</h3>
-          <p>Krüsanteem • liilia • anemoon • preeriakell</p>
-          <p>Hind: ∅60cm 165€, ∅80cm 205€</p>
-          <a
-            href="#orderForm"
-            class="cta-button"
-            onclick="selectProduct('Enif')"
             >Telli</a
           >
         </div>
@@ -1125,6 +1005,140 @@
             href="#orderForm"
             class="cta-button"
             onclick="selectProduct('Elera')"
+            >Telli</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="premium-parjad">
+      <div class="product-section-title">
+        <h2>Premium matusepärjad</h2>
+        <p>
+          Premium matusepärjade puhul on rõhk hinnalisematel lillesortidel ja
+          eksklusiivsematel disainilahendustel. Eripärased lillekombinatsioonid,
+          peened värvinüansid ja omanäoline floristiline kujundus annavad neile
+          elegantse ning luksusliku ilme.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-box">
+          <img
+            src="/images/Matuseparg13.webp"
+            alt="Luksuslik matusepärg roosidest ja liiliatest"
+            width="800"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Bach</h3>
+          <p>roos • liilia</p>
+          <p>Hind: ∅60cm 320€, ∅80cm 360€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Bach')"
+            >Telli</a
+          >
+        </div>
+
+        <div class="product-box">
+          <img
+            src="/images/Matuseparjad-kulleriga-Beethoven.webp"
+            alt="Premiumpärg hortensiatest Tallinnasse"
+            width="800"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Beethoven</h3>
+          <p>roos • hortensia • krüsanteem</p>
+          <p>Hind: ∅60cm 330€, ∅80cm 370€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Beethoven')"
+            >Telli</a
+          >
+        </div>
+
+        <div class="product-box">
+          <img
+            src="/images/Matuseparjad-kulleriga-Vivaldi.webp"
+            alt="Matusepärg kuldsete roosidega"
+            width="800"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Vivaldi</h3>
+          <p>roos • liilia • krüsanteem</p>
+          <p>Hind: ∅60cm 310€, ∅80cm 350€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Vivaldi')"
+            >Telli</a
+          >
+        </div>
+
+        <div class="product-box">
+          <img
+            src="/images/Matuseparjad-kulleriga-Tallinnas.webp"
+            alt="Matusepärg roosidest ja liiliatest"
+            width="800"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Mozart</h3>
+          <p>valge ja punane roos • liilia</p>
+          <p>Hind: ∅60cm 330€, ∅80cm 370€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Mozart')"
+            >Telli</a
+          >
+        </div>
+
+        <div class="product-box">
+          <img
+            src="/images/Matuseparg-Tallinnas-Enif.webp"
+            alt="Värviline matusepärg"
+            width="480"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Enif</h3>
+          <p>Krüsanteem • liilia • anemoon • preeriakell</p>
+          <p>Hind: ∅60cm 310€, ∅80cm 360€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Enif')"
+            >Telli</a
+          >
+        </div>
+
+        <div class="product-box">
+          <img
+            src="/images/strauss.webp"
+            alt="Luksuslik pärg punastest hortensiatest"
+            width="800"
+            height="1200"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3>Strauss</h3>
+          <p>Hortensia • roos</p>
+          <p>Hind: ∅60cm 310€, ∅80cm 350€</p>
+          <a
+            href="#orderForm"
+            class="cta-button"
+            onclick="selectProduct('Strauss')"
             >Telli</a
           >
         </div>
@@ -1643,21 +1657,22 @@
 
       const mudeliteHinnad = {
         Bach: {
-          "∅60cm": 210,
-          "∅80cm": 250,
+          "∅60cm": 320,
+          "∅80cm": 360,
         },
         Beethoven: {
-          "∅60cm": 210,
-          "∅80cm": 250,
+          "∅60cm": 330,
+          "∅80cm": 370,
         },
         Vivaldi: {
-          "∅60cm": 185,
-          "∅80cm": 225,
+          "∅60cm": 310,
+          "∅80cm": 350,
         },
         Mozart: {
-          "∅60cm": 210,
-          "∅80cm": 250,
+          "∅60cm": 330,
+          "∅80cm": 370,
         },
+
         Alnitak: {
           "∅60cm": 145,
           "∅80cm": 185,
@@ -1726,14 +1741,16 @@
           "∅60cm": 135,
           "∅80cm": 175,
         },
+
         Strauss: {
-          "∅60cm": 185,
-          "∅80cm": 225,
+          "∅60cm": 310,
+          "∅80cm": 350,
         },
         Enif: {
-          "∅60cm": 165,
-          "∅80cm": 205,
+          "∅60cm": 310,
+          "∅80cm": 360,
         },
+
         Merak: {
           "∅60cm": 145,
           "∅80cm": 185,
@@ -1882,8 +1899,9 @@ Arve on lisatud manusena.`;
 
     <script>
       const filterButtons = document.querySelectorAll(".price-filter-btn");
-      const productBoxes = document.querySelectorAll(
-        ".product-grid .product-box",
+
+      const parjaSektsioonid = document.querySelectorAll(
+        "#tavalised-parjad, #premium-parjad",
       );
 
       filterButtons.forEach(function (button) {
@@ -1897,19 +1915,41 @@ Arve on lisatud manusena.`;
 
           button.classList.add("active");
 
-          productBoxes.forEach(function (product) {
-            const tekst = product.textContent;
-            const hinnaVaste = tekst.match(/Hind:.*?(\d+)\s*€/);
+          parjaSektsioonid.forEach(function (sektsioon) {
+            const tooted = sektsioon.querySelectorAll(".product-box");
+            let nahtavaidTooteid = 0;
 
-            if (!hinnaVaste) return;
+            tooted.forEach(function (toode) {
+              const hinnaTekst = Array.from(toode.querySelectorAll("p")).find(
+                function (p) {
+                  return p.textContent.includes("Hind:");
+                },
+              );
 
-            const hind = Number(hinnaVaste[1]);
+              if (!hinnaTekst) {
+                toode.style.display = "none";
+                return;
+              }
 
-            if (hind >= minHind && hind <= maxHind) {
-              product.style.display = "";
-            } else {
-              product.style.display = "none";
-            }
+              const vaste =
+                hinnaTekst.textContent.match(/60\s*cm\s*(\d+)\s*€/i);
+
+              if (!vaste) {
+                toode.style.display = "none";
+                return;
+              }
+
+              const hind = Number(vaste[1]);
+              const sobib = hind >= minHind && hind <= maxHind;
+
+              toode.style.display = sobib ? "" : "none";
+
+              if (sobib) {
+                nahtavaidTooteid++;
+              }
+            });
+
+            sektsioon.style.display = nahtavaidTooteid > 0 ? "" : "none";
           });
         });
       });
